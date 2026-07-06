@@ -19,41 +19,19 @@
 ## 1. Создание проекта
 
 - [x] Создать Vue-проект через Vite и перейти в папку проекта:
-- [ ] Инициализировать Git-репозиторий (`git init`).
-- [ ] Создать первый коммит после базовой настройки проекта.
-
-
-- [ ] Установить зависимости:
-
-```bash
-npm install
-```
-
-- [ ] Установить Vue Router:
-
-```bash
-npm install vue-router
-```
-
-- [ ] Установить Tailwind CSS:
-
-```bash
-npm install -D tailwindcss @tailwindcss/vite
-```
-
-- [ ] Подключить Tailwind в `vite.config.ts`.
-- [ ] Подключить Tailwind в главный CSS-файл, например `src/style.css`.
-- [ ] Проверить запуск проекта:
-
-```bash
-npm run dev
-```
+- [x] Инициализировать Git-репозиторий (`git init`).
+- [x] Создать первый коммит после базовой настройки проекта.
+- [x] Установить Vue Router
+- [x] Установить Tailwind CSS:
+- [x] Подключить Tailwind в `vite.config.ts`.
+- [x] Подключить Tailwind в главный CSS-файл `src/style.css`.
+- [x] Проверить запуск проекта:
 
 ---
 
 ## 2. Базовая структура проекта
 
-- [ ] Привести проект к понятной структуре:
+- [x] Привести проект к понятной структуре:
 
 ```text
 src/
@@ -83,10 +61,10 @@ src/
   style.css
 ```
 
-- [ ] Вынести типы `User` и `Todo` в отдельные файлы.
-- [ ] Вынести работу с API в отдельный файл.
-- [ ] Вынести auth state текущего пользователя в `provide/inject`.
-- [ ] Вынести работу с `localStorage` в отдельный utility-файл только для избранных todo.
+- [x] Вынести типы `User` и `Todo` в отдельные файлы.
+- [x] Вынести работу с API в отдельный файл.
+- [x] Вынести auth state текущего пользователя в `provide/inject`.
+- [x] Вынести работу с `localStorage` в отдельный utility-файл только для избранных todo.
 
 ---
 
@@ -94,124 +72,30 @@ src/
 
 ### `User`
 
-- [ ] Создать тип пользователя на основе ответа API:
-
-```ts
-export interface User {
-  id: number
-  name: string
-  username: string
-  email: string
-  phone: string
-  website: string
-  company: {
-    name: string
-    catchPhrase: string
-    bs: string
-  }
-  address: {
-    street: string
-    suite: string
-    city: string
-    zipcode: string
-  }
-}
-```
+- [x] Создать тип пользователя на основе ответа API:
 
 ### `Todo`
 
-- [ ] Создать тип задачи:
-
-```ts
-export interface Todo {
-  userId: number
-  id: number
-  title: string
-  completed: boolean
-}
-```
+- [x] Создать тип задачи:
 
 ---
 
 ## 4. Настройка Vue Router
 
-- [ ] Создать роутер в `src/router/index.ts`.
-- [ ] Добавить два маршрута:
-
-```ts
-const routes = [
-  {
-    path: '/',
-    name: 'login',
-    component: LoginPage,
-  },
-  {
-    path: '/todos',
-    name: 'todos',
-    component: TodosPage,
-  },
-]
-```
-
-- [ ] Подключить роутер в `main.ts`.
-- [ ] В `App.vue` оставить только `<RouterView />`.
-- [ ] Проверить переход между страницами вручную.
+- [x] Создать роутер в `src/router/index.ts`.
+- [x] Добавить два маршрута:
+- [x] Подключить роутер в `main.ts`.
+- [x] В `App.vue` оставить только `<RouterView />`.
+- [x] Проверить переход между страницами вручную.
 
 ---
 
 ## 5. API-слой
 
-- [ ] Создать файл `src/api/jsonPlaceholderApi.ts`.
-- [ ] Реализовать функцию получения пользователей:
-
-```ts
-export async function getUsers(): Promise<User[]> {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users')
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch users')
-  }
-
-  return response.json()
-}
-```
-
-- [ ] Реализовать функцию получения todo:
-
-```ts
-export async function getTodos(): Promise<Todo[]> {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch todos')
-  }
-
-  return response.json()
-}
-```
-
-- [ ] Реализовать функцию создания todo:
-
-```ts
-export async function createTodo(data: Pick<Todo, 'userId' | 'title'>): Promise<Todo> {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      ...data,
-      completed: false,
-    }),
-  })
-
-  if (!response.ok) {
-    throw new Error('Failed to create todo')
-  }
-
-  return response.json()
-}
-```
+- [x] Создать файл `src/api/jsonPlaceholderApi.ts`.
+- [x] Реализовать функцию получения пользователей:
+- [x] Реализовать функцию получения todo:
+- [x] Реализовать функцию создания todo:
 
 ---
 
@@ -219,130 +103,53 @@ export async function createTodo(data: Pick<Todo, 'userId' | 'title'>): Promise<
 
 ### Основная задача
 
-- [ ] На главной странице `/` вывести форму входа.
-- [ ] В форме должны быть поля:
+- [x] На главной странице `/` вывести форму входа.
+- [x] В форме должны быть поля:
   - `Username`
   - `Phone number`
   - кнопка `Login`
 
 ### Валидация username
 
-- [ ] Поле `Username` должно принимать только буквы.
-- [ ] При вводе удалять все символы, кроме букв.
-- [ ] Можно разрешить латиницу и кириллицу:
-
-```ts
-username.value = value.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '')
-```
+- [x] Поле `Username` обязательное.
+- [x] Поле `Username` должно принимать только буквы.
 
 ### Валидация phone
 
-- [ ] Поле `Phone number` должно принимать числа и символы.
-- [ ] Не ограничивать ввод жёстко, потому что в API телефоны содержат символы вроде `-`, `.`, `x`, пробелы и скобки.
+- [x] Поле `Phone number` обязательное.
+- [x] Поле `Phone number` должно принимать цифры и символы +, (, ), -, пробел.
 
 ### Логика входа
 
-- [ ] При нажатии `Login` загрузить список пользователей.
-- [ ] Найти пользователя, у которого совпадают:
+- [x] При нажатии `Login` загрузить список пользователей.
+- [x] Найти пользователя, у которого совпадают:
   - `username`
   - `phone`
-- [ ] Сравнение username лучше делать без учёта регистра:
-
-```ts
-user.username.toLowerCase() === username.value.toLowerCase()
-```
-
-- [ ] Phone сравнивать как строку после `trim()`:
-
-```ts
-user.phone.trim() === phone.value.trim()
-```
-
 - [ ] Если пользователь найден:
   - записать пользователя в auth context через `provide/inject`;
   - выполнить редирект на `/todos`.
 - [ ] Если пользователь не найден:
-  - показать ошибку `login error`.
+  - показать ошибку `Username or Phone Number does not match`.
 
 ### Хранение текущего пользователя через provide/inject
 
-- [ ] Не хранить текущего пользователя в `localStorage`, потому что ТЗ требует `localStorage` только для избранных todo.
-- [ ] Создать auth context, который хранит пользователя в памяти приложения.
-- [ ] Создать файл `src/composables/authContext.ts`.
-- [ ] В auth context описать:
+- [x] Создать auth context, который хранит пользователя в памяти приложения.
+- [x] В auth context описать:
   - `currentUser` — текущий пользователь;
   - `setCurrentUser(user)` — запись пользователя после успешного login;
   - `clearCurrentUser()` — очистка пользователя при logout.
-
-Пример:
-
-```ts
-import { inject, provide, ref, type InjectionKey, type Ref } from 'vue'
-import type { User } from '@/types/user'
-
-interface AuthContext {
-  currentUser: Ref<User | null>
-  setCurrentUser: (user: User) => void
-  clearCurrentUser: () => void
-}
-
-const authKey: InjectionKey<AuthContext> = Symbol('auth')
-
-export function provideAuth() {
-  const currentUser = ref<User | null>(null)
-
-  function setCurrentUser(user: User) {
-    currentUser.value = user
-  }
-
-  function clearCurrentUser() {
-    currentUser.value = null
-  }
-
-  provide(authKey, {
-    currentUser,
-    setCurrentUser,
-    clearCurrentUser,
-  })
-}
-
-export function useAuth() {
-  const auth = inject(authKey)
-
-  if (!auth) {
-    throw new Error('useAuth must be used inside provider')
-  }
-
-  return auth
-}
-```
-
-- [ ] Вызвать `provideAuth()` в верхнем компоненте, например в `App.vue`.
-- [ ] После успешного login вызвать `setCurrentUser(user)`.
-- [ ] На странице `/todos` читать пользователя через `useAuth()`.
-- [ ] Если пользователя нет — редиректить обратно на `/`.
+- [x] Вызвать `provideAuth()` в верхнем компоненте, например в `App.vue`.
+- [x] После успешного login вызвать `setCurrentUser(user)`.
+- [x] На странице `/todos` читать пользователя через `useAuth()`.
 
 ---
 
 ## 7. Защита страницы todos
 
-- [ ] В `TodosPage.vue` получить `currentUser` через `useAuth()`.
-- [ ] Если пользователя нет в auth context, выполнить редирект на `/`.
-- [ ] Можно сделать это внутри `onMounted()` или `watchEffect()`:
-
-```ts
-const router = useRouter()
-const { currentUser } = useAuth()
-
-onMounted(() => {
-  if (!currentUser.value) {
-    router.push('/')
-  }
-})
-```
-
-- [ ] Важно: после перезагрузки страницы auth context очистится, поэтому пользователь вернётся на login. Это нормально, потому что ТЗ не требует хранить сессию.
-- [ ] Более аккуратный вариант — добавить navigation guard в Vue Router, но для тестового задания достаточно проверки в компоненте.
+- [x] В `TodosPage.vue` получить `currentUser` через `useAuth()`.
+- [x] Если пользователя нет в auth context, внутри `onMounted()` выполнить редирект на `/`.
+- [x] Важно: после перезагрузки страницы auth context очистится, поэтому пользователь вернётся на login. Это нормально, потому что ТЗ не требует хранить сессию.
+- [x] Более аккуратный вариант — добавить navigation guard в Vue Router, но для тестового задания достаточно проверки в компоненте.
 
 ---
 
