@@ -30,7 +30,3 @@ function onToggleFavorite() {
   </div>
 </div>
 </template>
-
-<style scoped>
-
-</style>

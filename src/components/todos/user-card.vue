@@ -24,7 +24,3 @@ const defClass = 'font-semibold'
   </div>
   <div v-else class="bg-white rounded-[5px] p-4 text-center">No data</div>
 </template>
-
-<style scoped>
-
-</style>

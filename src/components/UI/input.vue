@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-  <div>
+  <div class="w-full">
     <label v-if="label">{{ label }}</label>
 
     <input

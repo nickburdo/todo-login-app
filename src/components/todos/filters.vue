@@ -22,7 +22,3 @@ const author = defineModel<string>('author', { required: true })
   </select>
 </div>
 </template>
-
-<style scoped>
-
-</style>

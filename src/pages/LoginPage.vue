@@ -6,9 +6,8 @@ import {getUsers} from "../api/jsonPlaceholderApi.ts";
 import {useAuth} from "../composables/authContext.ts";
 import {useRouter} from "vue-router";
 
-// TODO: Remove default values
-const username = ref('Moriah.Stanton');
-const phone = ref('024-648-3804');
+const username = ref('');
+const phone = ref('');
 const errors = ref ({
   username: '',
   phone: '',
@@ -101,7 +100,7 @@ async function onSubmit() {
                   @input="validatePhone"
                   :error="errors.phone"
               />
-              <Button type="submit">Register</Button>
+              <Button type="submit">Log In</Button>
             </div>
           </form>
         </div>

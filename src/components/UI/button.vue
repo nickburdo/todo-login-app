@@ -11,8 +11,8 @@ const { color = 'primary', fullWidth } = defineProps<{
 
 <template>
   <button
-      v-bind="$attrs"
-      :class="[
+    v-bind="$attrs"
+    :class="[
       'p-3 rounded-[5px] text-white',
       color === 'primary' && 'bg-(--primary)',
       color === 'secondary' && 'bg-(--secondary) ',
