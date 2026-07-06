@@ -6,8 +6,9 @@ import {getUsers} from "../api/jsonPlaceholderApi.ts";
 import {useAuth} from "../composables/authContext.ts";
 import {useRouter} from "vue-router";
 
-const username = ref('');
-const phone = ref('');
+// TODO: Remove default values
+const username = ref('Moriah.Stanton');
+const phone = ref('024-648-3804');
 const errors = ref ({
   username: '',
   phone: '',
@@ -55,9 +56,6 @@ async function onSubmit() {
         user.username.toLowerCase() === username.value.trim().toLowerCase()
         && clearPhoneNumber(user.phone) === clearPhoneNumber(phone.value));
 
-    console.log(users);
-    console.log(matchUser);
-
     if (!matchUser) {
       errors.value.username = 'Username or Phone Number does not match';
       return;
@@ -78,7 +76,7 @@ async function onSubmit() {
 <template>
   <div class="bg-(--bg-overlay) min-h-screen flex flex-col">
     <header class="h-15 bg-(--bg-overlay-accent)"></header>
-    <main class="grow flex justify-center items-center">
+    <main class="grow flex justify-center items-center p-4">
       <section class="w-111.75 bg-(--bg-main) rounded-[5px]">
         <header class="bg-(--bg-header) p-3.75 text-center rounded-t-[5px]">
           <h1 class="font-normal text-[17px] leading-5.25">Log In</h1>
@@ -112,7 +110,3 @@ async function onSubmit() {
     <footer class="h-67.5 bg-(--bg-overlay-accent)"></footer>
   </div>
 </template>
-
-<style scoped>
-
-</style>

@@ -125,10 +125,10 @@ src/
 - [x] Найти пользователя, у которого совпадают:
   - `username`
   - `phone`
-- [ ] Если пользователь найден:
+- [x] Если пользователь найден:
   - записать пользователя в auth context через `provide/inject`;
   - выполнить редирект на `/todos`.
-- [ ] Если пользователь не найден:
+- [x] Если пользователь не найден:
   - показать ошибку `Username or Phone Number does not match`.
 
 ### Хранение текущего пользователя через provide/inject
@@ -155,10 +155,11 @@ src/
 
 ## 8. Страница todos
 
+- [x] Создать компонент `TodoList.vue`.
+
 ### Данные пользователя
 
-- [ ] В верхней части страницы вывести персональные данные пользователя.
-- [ ] Минимально вывести:
+- [x] В верхней части страницы вывести персональные данные пользователя:
   - name
   - username
   - email
@@ -166,76 +167,42 @@ src/
   - website
   - company name
   - city
-
-- [ ] Оформить блок пользователя карточкой через Tailwind.
+- [x] Оформить блок пользователя карточкой через Tailwind.
 
 ### Загрузка todos
 
-- [ ] При открытии страницы `/todos` загрузить todos из API.
-- [ ] Сохранить их в реактивный массив:
-
-```ts
-const todos = ref<Todo[]>([])
-```
-
-- [ ] Добавить состояние загрузки:
-
-```ts
-const isLoading = ref(false)
-```
-
-- [ ] Добавить состояние ошибки:
-
-```ts
-const error = ref('')
-```
-
-- [ ] При ошибке показать сообщение на странице.
+- [x] При открытии страницы `/todos` загрузить todos из API.
+- [x] Сохранить их в реактивный массив:
+- [x] Добавить состояние загрузки:
+- [x] Добавить состояние ошибки:
+- [x] При ошибке показать сообщение на странице.
 
 ---
 
 ## 9. Вывод списка todo
 
-- [ ] Создать компонент `TodoList.vue`.
-- [ ] Создать компонент `TodoItem.vue`.
-- [ ] Передавать todo в `TodoItem` через props.
-- [ ] Вывести для каждой задачи:
+- [x] Создать компонент `TodoItem.vue`.
+- [x] Передавать todo в `TodoItem` через props.
+- [x] Вывести для каждой задачи:
   - id
   - userId
   - title
   - completed/uncompleted
   - кнопку или иконку избранного
-
-- [ ] Использовать `v-for`:
-
-```vue
-<TodoItem
-  v-for="todo in filteredTodos"
-  :key="todo.id"
-  :todo="todo"
-/>
-```
-
-- [ ] Для completed/uncompleted использовать разные текстовые метки.
-- [ ] Можно добавить разные стили через условные классы.
+- [x] Использовать `v-for`:
+- [x] Для completed/uncompleted использовать разные иконки.
 
 ---
 
 ## 10. Фильтр по статусу
 
-- [ ] Создать select со статусами:
+- [x] Создать select со статусами:
   - `All`
   - `Completed`
   - `Uncompleted`
   - `Favorites`
-
-- [ ] Создать реактивное состояние:
-
-```ts
-const statusFilter = ref<'all' | 'completed' | 'uncompleted' | 'favorites'>('all')
-```
-
-- [ ] В computed-фильтрации реализовать правила:
+- [x] Создать реактивное состояние:
+- [x] В computed-фильтрации реализовать правила:
   - `all` — показывать все задачи;
   - `completed` — только `todo.completed === true`;
   - `uncompleted` — только `todo.completed === false`;
@@ -245,77 +212,30 @@ const statusFilter = ref<'all' | 'completed' | 'uncompleted' | 'favorites'>('all
 
 ## 11. Фильтр по userId
 
-- [ ] Создать select с опциями:
+- [x] Создать select с опциями:
   - `All Users`
   - уникальные `userId` из списка todos
-
-- [ ] Получить уникальные userId через computed:
-
-```ts
-const userIds = computed(() => {
-  return [...new Set(todos.value.map(todo => todo.userId))]
-})
-```
-
-- [ ] Создать состояние выбранного пользователя:
-
-```ts
-const selectedUserId = ref<number | 'all'>('all')
-```
-
-- [ ] Если выбран `All Users`, не фильтровать по пользователю.
-- [ ] Если выбран конкретный userId, показывать только его задачи.
+- [x] Получить уникальные userId через computed:
+- [x] Создать состояние выбранного пользователя:
+- [x] Если выбран `All Users`, не фильтровать по пользователю.
+- [x] Если выбран конкретный userId, показывать только его задачи.
 
 ---
 
 ## 12. Поиск по title
 
-- [ ] Добавить input для поиска.
-- [ ] Создать состояние:
-
-```ts
-const searchQuery = ref('')
-```
-
-- [ ] Поиск должен работать вместе с выбранными фильтрами.
-- [ ] Сравнение делать без учёта регистра:
-
-```ts
-todo.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-```
-
----
+- [x] Добавить input для поиска.
+- [x] Создать состояние для поиска:
+- [x] Поиск должен работать вместе с выбранными фильтрами.
+- [x] Сравнение делать без учёта регистра:
 
 ## 13. Общая computed-фильтрация
 
-- [ ] Создать `filteredTodos` через `computed`.
-- [ ] Последовательно применить:
+- [x] Создать `filteredTodos` через `computed`.
+- [x] Последовательно применить:
   - фильтр по статусу;
   - фильтр по userId;
   - поиск по title.
-
-Пример логики:
-
-```ts
-const filteredTodos = computed(() => {
-  return todos.value.filter(todo => {
-    const matchesStatus =
-      statusFilter.value === 'all' ||
-      (statusFilter.value === 'completed' && todo.completed) ||
-      (statusFilter.value === 'uncompleted' && !todo.completed) ||
-      (statusFilter.value === 'favorites' && favoriteIds.value.includes(todo.id))
-
-    const matchesUser =
-      selectedUserId.value === 'all' || todo.userId === selectedUserId.value
-
-    const matchesSearch = todo.title
-      .toLowerCase()
-      .includes(searchQuery.value.toLowerCase().trim())
-
-    return matchesStatus && matchesUser && matchesSearch
-  })
-})
-```
 
 ---
 
@@ -356,100 +276,16 @@ todos.value.unshift({
 
 ## 15. Избранное через localStorage
 
-- [ ] Создать ключ для localStorage:
-
-```ts
-const FAVORITES_KEY = 'favoriteTodoIds'
-```
-
-- [ ] Хранить только массив id:
-
-```ts
-[1, 5, 12]
-```
-
-- [ ] При загрузке страницы читать избранное из `localStorage`.
-- [ ] Если данных нет — использовать пустой массив.
-- [ ] Реализовать функцию добавления/удаления из избранного:
-
-```ts
-function toggleFavorite(todoId: number) {
-  if (favoriteIds.value.includes(todoId)) {
-    favoriteIds.value = favoriteIds.value.filter(id => id !== todoId)
-  } else {
-    favoriteIds.value.push(todoId)
-  }
-
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favoriteIds.value))
-}
-```
-
-- [ ] Передавать в `TodoItem`:
+- [x] Создать ключ для localStorage:
+- [x] Хранить только массив id:
+- [x] При загрузке страницы читать избранное из `localStorage`.
+- [x] Если данных нет — использовать пустой массив.
+- [x] Реализовать функцию добавления/удаления из избранного:
+- [x] Передавать в `TodoItem`:
   - является ли задача избранной;
   - обработчик переключения избранного.
-
-- [ ] Для избранной задачи показать активное состояние кнопки, например `★`.
-- [ ] Для обычной задачи показать `☆`.
-
----
-
-## 16. Tailwind-вёрстка
-
-### Общие стили
-
-- [ ] Сделать аккуратный responsive layout.
-- [ ] Использовать контейнер:
-
-```html
-<div class="mx-auto max-w-6xl px-4 py-6">
-```
-
-- [ ] Для карточек использовать:
-
-```html
-<div class="rounded-xl border bg-white p-4 shadow-sm">
-```
-
-- [ ] Для форм использовать вертикальный layout на мобильных и горизонтальный на больших экранах.
-
-### Login page
-
-- [ ] Центрировать форму по экрану.
-- [ ] Сделать карточку формы.
-- [ ] Добавить визуальное отображение ошибки.
-- [ ] Добавить disabled-состояние кнопки во время загрузки.
-
-### Todos page
-
-- [ ] Верхний блок — карточка пользователя.
-- [ ] Ниже — блок фильтров.
-- [ ] Ниже — блок Create todo.
-- [ ] Ниже — список задач.
-- [ ] Использовать CSS Grid/Flexbox через Tailwind:
-
-```html
-<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-```
-
-- [ ] На мобильных список должен быть в одну колонку.
-- [ ] На планшете — в две колонки.
-- [ ] На десктопе — в три колонки.
-
----
-
-## 17. Состояния интерфейса
-
-- [ ] Показать loading при загрузке users.
-- [ ] Показать loading при загрузке todos.
-- [ ] Показать ошибку при проблемах с API.
-- [ ] Показать пустое состояние, если по фильтрам ничего не найдено:
-
-```text
-No todos found
-```
-
-- [ ] Заблокировать кнопку `Login`, если поля пустые.
-- [ ] Заблокировать кнопку `Add`, если `User ID` или `Title` невалидны.
+- [x] Для избранной задачи показать активное состояние кнопки `★`.
+- [x] Для обычной задачи показать `☆`.
 
 ---
 
@@ -544,20 +380,6 @@ router.push('/')
 - [ ] Проверить редирект на `/`.
 - [ ] Попробовать открыть `/todos` напрямую после logout или после обновления страницы.
 - [ ] Проверить возврат на `/`.
-
----
-
-## 21. Что можно добавить сверх ТЗ
-
-- [ ] Debounce для поиска по title.
-- [ ] Navigation guard для защиты `/todos`.
-- [ ] Разделение логики на composables:
-  - `useAuth()`
-  - `useTodos()`
-  - `useFavorites()`
-- [ ] Нормализация phone перед сравнением.
-- [ ] Сохранение фильтров в query params.
-- [ ] Небольшой README с инструкцией запуска.
 
 ---
 
