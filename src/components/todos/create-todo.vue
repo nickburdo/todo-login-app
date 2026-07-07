@@ -2,12 +2,17 @@
 import Input from "../UI/input.vue";
 import Button from "../UI/button.vue";
 import {ref} from "vue";
+import type {Todo} from "../../types/todo.ts";
+import {createTodo} from "../../api/jsonPlaceholderApi.ts";
+import {useAuth} from "../../composables/authContext.ts";
 
 const title = ref('');
 const error = ref('');
+const isSubmitting = ref(false);
+const {currentUser} = useAuth();
 
 const emit = defineEmits<{
-  (e: 'createTodo', title: string): void
+  (e: 'created', todo: Todo): void
 }>();
 
 function validateTitle() {
@@ -20,11 +25,22 @@ function validateTitle() {
   }
 }
 
-function onAddTodo() {
+async function onAddTodo() {
+  if (isSubmitting.value) return;
   validateTitle();
   if (error.value) return;
-  emit('createTodo', title.value);
-  title.value = '';
+
+  isSubmitting.value = true;
+  try {
+    const todo = await createTodo({ userId: currentUser.value?.id || 0, title: title.value });
+    title.value = '';
+    emit('created', todo);
+  } catch (e) {
+    console.error('Error:', e);
+    error.value = 'Failed to create todo';
+  } finally {
+    isSubmitting.value = false;
+  }
 }
 
 </script>
@@ -38,7 +54,8 @@ function onAddTodo() {
       v-model="title"
       @input="validateTitle"
       :error="error"
+      :disabled="isSubmitting"
     />
-    <Button @click="onAddTodo">Add</Button>
+    <Button @click="onAddTodo" :disabled="isSubmitting">Add</Button>
   </div>
 </template>

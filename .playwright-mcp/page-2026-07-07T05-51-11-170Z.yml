@@ -1,0 +1,12 @@
+- generic [ref=f2e3]:
+  - banner [ref=f2e4]
+  - main [ref=f2e5]:
+    - generic [ref=f2e6]:
+      - heading "Log In" [level=1] [ref=f2e8]
+      - generic [ref=f2e9]:
+        - paragraph [ref=f2e10]: Enter Username and Phone number to view todos
+        - generic [ref=f2e12]:
+          - textbox "Username" [ref=f2e14]
+          - textbox "Phone Number" [ref=f2e16]
+          - button "Log In" [ref=f2e17]
+  - contentinfo [ref=f2e18]
